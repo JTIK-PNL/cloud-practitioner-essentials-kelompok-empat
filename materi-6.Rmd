@@ -13,6 +13,23 @@ output:
     incremental: false
 ---
 
+## Pengantar Keamanan
+
+Keamanan adalah aspek kritis dalam berbagai bidang, baik itu dalam konteks fisik, digital, maupun informasi. Pemahaman dasar tentang keamanan membantu individu dan organisasi dalam melindungi aset, data, dan sistem dari berbagai ancaman.
+Keamanan juga dapat diartikan sebagai perlindungan terhadap ancaman yang dapat merugikan. Ini mencakup pencegahan, deteksi, dan respons terhadap ancaman.
+
+## Shared Responsibility Model
+
+Shared Responsibility Model adalah kerangka kerja yang digunakan untuk membagi tanggung jawab keamanan antara penyedia layanan cloud dan pelanggan. Model ini sangat penting dalam lingkungan cloud computing karena membantu memastikan bahwa semua aspek keamanan tertangani dengan jelas dan efisien.
+
+Ada dua hal utama yang harus Anda perhatikan di shared responsibility model ini, yaitu:
+
+* AWS, mengontrol security of the cloud (keamanan dari cloud).
+* Pelanggan, mengontrol security in the cloud (keamanan di cloud).
+
+AWS bertanggung jawab untuk mengontrol data center, keamanan setiap layanan, dan lain sebagainya
+Lalu, bagian pelanggan adalah mengamankan beban kerja yang mereka jalankan di cloud. Ini merupakan bagian tanggung jawab yang AWS bagikan dengan pelanggan guna memastikan keamanan di cloud. 
+
 ## Perizinan dan Hak Akses Pengguna
 
 Perizinan dan hak akses pengguna adalah komponen kunci dalam strategi keamanan sistem informasi. Mereka berfungsi untuk mengatur siapa yang dapat mengakses berbagai sumber daya dalam sistem dan apa yang dapat mereka lakukan dengan sumber daya tersebut.
