@@ -1,5 +1,5 @@
 ---
-title: "Principles of Reactivity"
+title: "Kelomp"
 author: "Joe Cheng [&lt;joe@rstudio.com&gt;](mailto:joe@rstudio.com)"
 date: "\\#ShinyDevConf — January 30, 2016"
 output:

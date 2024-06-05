@@ -13,97 +13,72 @@ output:
     incremental: false
 ---
 
-## Warm up: Side effects
+## Perizinan dan Hak Akses Pengguna
 
----
+Perizinan dan hak akses pengguna adalah komponen kunci dalam strategi keamanan sistem informasi. Mereka berfungsi untuk mengatur siapa yang dapat mengakses berbagai sumber daya dalam sistem dan apa yang dapat mereka lakukan dengan sumber daya tersebut.
 
-Functions can be executed for one or both of the following reasons:
+#### Perizinan (Permissions):
 
-> 1. You want its return value.
-> 2. You want it to have **some other effect**.
+Perizinan merujuk pada hak yang diberikan kepada pengguna atau grup pengguna untuk melakukan tindakan tertentu pada suatu sumber daya atau objek dalam sistem. Contoh sumber daya ini bisa berupa file, folder, aplikasi, atau data dalam basis data. 
 
-<div class="fragment">
-These are (a bit misleadingly) called _side effects_. Any effect that is not the return value is a side effect.
-</div>
+#### Hak Akses Pengguna (User Access Rights):
 
+Hak akses pengguna adalah sekumpulan izin yang diberikan kepada pengguna untuk mengakses sumber daya dalam sistem. Hak akses ini ditentukan oleh administrator sistem dan bergantung pada peran atau posisi pengguna dalam organisasi.
 
+## 
+Implementasi hak akses biasanya melibatkan penggunaan akun pengguna unik, daftar kontrol akses (Access Control Lists, ACLs), dan sistem manajemen identitas serta akses (Identity and Access Management, IAM).Contoh Implementasi dalam AWS IAM
+AWS Identity and Access Management (IAM) adalah layanan yang membantu mengelola akses ke layanan dan sumber daya AWS dengan aman. Fitur utama AWS IAM meliputi:
 
-## Functions with side effects
+#### IAM Users
 
-```r
-write.csv(...)
+Mewakili individu yang berinteraksi dengan layanan AWS. Pengguna ini tidak memiliki izin secara default dan perlu diberikan izin melalui IAM policies.
 
-plot(cars)
+#### IAM Policies
 
-print(x)
+Dokumen yang mengizinkan atau menolak aktivitas tertentu terhadap layanan dan sumber daya AWS. Policies ini ditulis dalam format JSON dan mengatur tindakan spesifik yang dapat dilakukan pengguna
 
-httr.POST(...)
+## 
+#### IAM Groups
 
-alarm()
-```
+Mengelompokkan pengguna untuk memudahkan pengelolaan izin. Policy yang dilampirkan ke grup akan diterapkan ke semua anggota grup.
 
+#### IAM Roles
 
+Memberikan izin sementara untuk tindakan tertentu tanpa memerlukan kredensial pengguna. Roles ini berguna untuk memberikan akses sementara kepada pengguna atau layanan.
 
-## More side effects
+## AWS Organizations
 
-```r
-# Sets a variable in a parent environment
-value <<- 10
+AWS Organizations adalah layanan yang memungkinkan Anda untuk mengelola dan mengatur beberapa akun AWS dari satu lokasi pusat. Dengan AWS Organizations, Anda dapat:
 
-# Loads into global env by default
-source("functions.R")
+* Manajemen Terpusat
 
-# Modifies the global search list
-library(dplyr)
+* Consolidated Billing
 
-# Only if foo is an env, ref class, or R6
-foo$bar <- TRUE
-```
+* Pengelompokan Akun
 
+* Kontrol Akses dan Layanan
 
+##
+#### Pengelompokan Hierarki Akun dalam AWS Organizations
+Pengelompokan hierarki akun dalam AWS Organizations berarti mengorganisir akun-akun AWS ke dalam Organizational Units (OU) untuk mempermudah pengelolaan.
 
-## NOT side effects (when inside a function)
+* Keamanan
+* Kepatuhan (Compliance)
+* Pengelolaan Anggaran
+* Pewarisan Kebijakan (Policy Inheritance)
+* Isolasi Beban Kerja
 
-```r
-# Modifying *local* variables
-value <- 10
+##
+#### Studi Kasus: Implementasi AWS Organizations
 
-# Creating most kinds of objects
-list(a = 1, b = 2)
+Bayangkan Anda memiliki bisnis dengan akun AWS terpisah untuk setiap departemen: Keuangan, IT, HR, dan Hukum. Anda memutuskan untuk menggabungkan akun-akun ini dalam satu organisasi untuk memudahkan manajemen.
 
-# Data frames are pass-by-value in R so this is OK
-dataset <- dataset %>% filter(count > 3)
+* Mengelompokkan Akun
 
-# Most calculations
-a + 1
-summary(pressure)
-lm(speed ~ dist, data = cars)
-predict(wfit, interval = "prediction")
-```
+* Membuat OU untuk HR dan Hukum
 
 
 
-## Ehhh... Not side effects
-
-```r
-# Reading from disk
-readLines("data.csv")
-
-# Making HTTP GET requests
-httr.GET("https://api.example.com/data.json")
-
-# Reading global variables
-.Random.seed
-
-# Modifying the random seed... ehhhhhh...
-runif(10)
-```
-
-
-
-If executing your function/expression **leaves the state of the world a little different** than before it executed, **it has side effects**.
-
-But if "what happens in `func`, stays in `func`" (besides the return value), then it doesn't have side effects.
 
 
 
